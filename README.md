@@ -19,7 +19,7 @@
   - [Row](#row)
   - [Expanded](#expanded)
   - [Praktek](#praktek)
-- [Lab 3  (Widget Part 2)](#lab-3--widget-part-2)
+- [Lab 3 (Widget Part 2)](#lab-3-widget-part-2)
   - [ListView](#listview)
   - [Text](#text)
   - [TextField](#textfield)
@@ -127,7 +127,7 @@ Row(
 ## Praktek
 Pada projek `lab2` anda bisa melihat contoh penggunaan dan perpaduan widget diatas dengan beberapa tambahan widget lain
 
-# Lab 3  (Widget Part 2)
+# Lab 3 (Widget Part 2)
 Pada bagian ini akan menunjukan beberapa contoh widget lain yang umum digunakan
 
 ## ListView
@@ -147,5 +147,5 @@ TextField()
 Widget untuk membuat sebuah button yang nantinya bisa menerima trigger `tap`
 
 ## Praktek
-Untuk praktek pada lab 3 akan membuat sebuah tampilan seperti berikut
+Untuk praktek pada lab 3 akan membuat sebuah tampilan seperti berikut (Sudah disediakan template pada folder lab3 dan hasilnya ada di lab3_final)
 

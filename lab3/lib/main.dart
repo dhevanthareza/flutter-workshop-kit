@@ -36,15 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: [
-          Container(
-            color: Colors.red,
-            padding: EdgeInsets.all(20),
-            child: Text("Text Container 1"),
-          ),
-        ],
-      ),
+      body: Container(),
     );
   }
 }

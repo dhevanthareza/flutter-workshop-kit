@@ -206,8 +206,9 @@ Card(
 Untuk praktek pada lab 3 akan membuat sebuah tampilan seperti berikut (Sudah disediakan template pada folder lab3 dan hasilnya ada di lab3_final)
 
 <div style="display: flex;">
-  <img src="images/lab_3_target.png" alt="Gambar 1" height="500" style="margin-right: 10px;">
+  <img src="images/lab_3_target.png" alt="Gambar 1" height="500">
   <img src="images/lab_3_target_2.png" alt="Gambar 2" height="500">
+  <img src="images/lab_3_target_vid.gif" alt="Gambar 2" height="500">
 </div>
 
 

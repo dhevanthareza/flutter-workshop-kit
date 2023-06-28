@@ -23,7 +23,8 @@
   - [ListView](#listview)
   - [Text](#text)
   - [TextField](#textfield)
-  - [Button](#button)
+  - [ElevatedButton](#elevatedbutton)
+  - [Card](#card)
   - [Praktek](#praktek-1)
 # Pengenalan
 ## Dart
@@ -136,16 +137,77 @@ Pada dasarnya ukuran halaman pada UI flutter akan mengikuti panjang dan lebar de
 ## Text
 Widget untuk menampilkan sebuah text
 ```dart
-Text("dadsadasd")
+const Text(
+    "Catat\nPengeluaran",
+    style: TextStyle(
+        color: Color(0xFF141414),
+        fontWeight: FontWeight.w700,
+        fontSize: 35,
+    ),
+),
 ```
 
 ## TextField
 Widget untuk membuat sebuah inputan text
-TextField()
+```dart
+TextField(
+    cursorColor: Color(0xFF141414),
+    decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+                Radius.circular(15),
+            ),
+            borderSide: BorderSide(
+                color: Color(0xFF141414),
+                width: 2.0,
+            ),
+        ),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+                Radius.circular(15),
+            ),
+            borderSide: BorderSide(
+                color: Color(0xFF141414),
+                width: 2.0,
+            ),
+        ),
+        labelText: 'Jumlah Pengeluaran',
+        labelStyle: TextStyle(
+            color: Color(0xFF141414),
+        ),
+    ),
+)
+```
 
-## Button
+## ElevatedButton
 Widget untuk membuat sebuah button yang nantinya bisa menerima trigger `tap`
+```dart
+ElevatedButton(
+    style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF141414),
+        shape: RoundedRectangleBorder(
+            borderRadius:
+            BorderRadius.circular(10.0),
+        ),
+    ),
+    onPressed: () {},
+    child: const Text('Submit'),
+)
+```
+
+## Card
+```dart
+Card(
+    child: Text("tes")
+)
+```
 
 ## Praktek
 Untuk praktek pada lab 3 akan membuat sebuah tampilan seperti berikut (Sudah disediakan template pada folder lab3 dan hasilnya ada di lab3_final)
+
+<div style="display: flex;">
+  <img src="images/lab_3_target.png" alt="Gambar 1" height="500" style="margin-right: 10px;">
+  <img src="images/lab_3_target_2.png" alt="Gambar 2" height="500">
+</div>
+
 

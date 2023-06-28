@@ -20,6 +20,11 @@
   - [Expanded](#expanded)
   - [Praktek](#praktek)
 - [Lab 3  (Widget Part 2)](#lab-3--widget-part-2)
+  - [ListView](#listview)
+  - [Text](#text)
+  - [TextField](#textfield)
+  - [Button](#button)
+  - [Praktek](#praktek-1)
 # Pengenalan
 ## Dart
 Merupakan bahasa pemrograman asynchronous berbasis OOP yang dapat digunakan untuk membuat aplikasi di segala platform
@@ -84,16 +89,63 @@ Container(
 
 ## Column
 Column merupakan sebuah widget yang berfungsi juga sebagai wadah, bedanya dengan Container widget ini dapat memiliki lebih dari 1 Child yang nanti nya akan di render secara vertikal
+```dart
+Column(
+    children: [
+        Container(child: Text("Text1")),
+        Container(child: Text("Text2"))
+    ]
+)
+```
 ## Row
 Column merupakan sebuah widget yang berfungsi juga sebagai wadah dan memiliki lebih dari 1 child bedanya dengan column widget didalam sini akan dirender secara horizontal
+```dart
+Row(
+    children: [
+        Container(child: Text("Text1")),
+        Container(child: Text("Text2"))
+    ]
+)
+```
 
 ## Expanded
 Sebuah widget wadah dimana widget ini akan menggunakan semua ruang tersisa pada widget parent nya
-
+```dart
+Row(
+    children: [
+        Container(child: 
+            Text("Text1")
+        ),
+        Expanded(
+            child: Container(
+                child: Text("Text2")
+            )
+        )
+    ]
+)
+```
 ## Praktek
 Pada projek `lab2` anda bisa melihat contoh penggunaan dan perpaduan widget diatas dengan beberapa tambahan widget lain
 
 # Lab 3  (Widget Part 2)
 Pada bagian ini akan menunjukan beberapa contoh widget lain yang umum digunakan
 
+## ListView
+Pada dasarnya ukuran halaman pada UI flutter akan mengikuti panjang dan lebar device nya, sehingga jika kita ingin membuat tampilan list yang sangat panjang kita memerlukan widget ini untuk dapat memanggunakan ukuran list yang panjang atau lebarnya melebihi ukuran device dan akan ditampilkan dalam bentuk scrolling
+
+## Text
+Widget untuk menampilkan sebuah text
+```dart
+Text("dadsadasd")
+```
+
+## TextField
+Widget untuk membuat sebuah inputan text
+TextField()
+
+## Button
+Widget untuk membuat sebuah button yang nantinya bisa menerima trigger `tap`
+
+## Praktek
+Untuk praktek pada lab 3 akan membuat sebuah tampilan seperti berikut
 

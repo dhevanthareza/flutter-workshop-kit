@@ -43,32 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.all(20),
             child: Text("Text Container 1"),
           ),
-          Container(
-            color: Colors.orange,
-            padding: EdgeInsets.all(20),
-            child: Text("Text Container 2"),
-          ),
-          Row(
-            children: [
-              Container(
-                color: Colors.yellow,
-                padding: EdgeInsets.all(20),
-                child: Text("Text Container 3"),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.green,
-                  padding: EdgeInsets.all(20),
-                  child: Text("Text Container 4"),
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: Container(
-              color: Colors.blue,
-            ),
-          )
         ],
       ),
     );

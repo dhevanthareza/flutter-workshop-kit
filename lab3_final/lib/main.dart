@@ -25,6 +25,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Map<String, dynamic>> histories = [
+    {"name": "Listrik", "amount": 5000000},
+    {"name": "Internet", "amount": 3000000},
+    {"name": "Utang", "amount": 5000000},
+    {"name": "Cicilan Rumah", "amount": 10000000},
+    {"name": "Kuota", "amount": 80000},
+    {"name": "Nongki nongki asik", "amount": 800000},
+    {"name": "Starbuck", "amount": 700000},
+    {"name": "Ganti HP", "amount": 70000000},
+    {"name": "Ganti Laptop", "amount": 170000000},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +86,7 @@ class _HomePageState extends State<HomePage> {
               height: 20,
             ),
             const TextField(
+              keyboardType: TextInputType.number,
               cursorColor: Color(0xFF141414),
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
@@ -149,262 +162,45 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 20,
             ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(10.0), // Radius border (10.0)
-              ),
-              margin: const EdgeInsets.only(left: 0, right: 0, bottom: 10),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Row(
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        "Bayar Listrik",
-                        style: TextStyle(
-                          color: Color(0xFF141414),
-                          fontSize: 15,
-                        ),
+            ...histories
+                .map(
+                  (Map<String, dynamic> history) => Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(10.0), // Radius border (10.0)
+                    ),
+                    margin:
+                        const EdgeInsets.only(left: 0, right: 0, bottom: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 15),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              history['name'],
+                              style: const TextStyle(
+                                color: Color(0xFF141414),
+                                fontSize: 15,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ),
+                          Text(
+                            history['amount'].toString(),
+                            style: const TextStyle(
+                              color: Color(0xFF141414),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                    Text(
-                      "Rp. 750.000",
-                      style: TextStyle(
-                        color: Color(0xFF141414),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(10.0), // Radius border (10.0)
-              ),
-              margin: const EdgeInsets.only(left: 0, right: 0, bottom: 10),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Row(
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        "Internet",
-                        style: TextStyle(
-                          color: Color(0xFF141414),
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Rp. 350.000",
-                      style: TextStyle(
-                        color: Color(0xFF141414),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(10.0), // Radius border (10.0)
-              ),
-              margin: const EdgeInsets.only(left: 0, right: 0, bottom: 10),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Row(
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        "Internet",
-                        style: TextStyle(
-                          color: Color(0xFF141414),
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Rp. 350.000",
-                      style: TextStyle(
-                        color: Color(0xFF141414),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(10.0), // Radius border (10.0)
-              ),
-              margin: const EdgeInsets.only(left: 0, right: 0, bottom: 10),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Row(
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        "Internet",
-                        style: TextStyle(
-                          color: Color(0xFF141414),
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Rp. 350.000",
-                      style: TextStyle(
-                        color: Color(0xFF141414),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(10.0), // Radius border (10.0)
-              ),
-              margin: const EdgeInsets.only(left: 0, right: 0, bottom: 10),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Row(
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        "Internet",
-                        style: TextStyle(
-                          color: Color(0xFF141414),
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Rp. 350.000",
-                      style: TextStyle(
-                        color: Color(0xFF141414),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(10.0), // Radius border (10.0)
-              ),
-              margin: const EdgeInsets.only(left: 0, right: 0, bottom: 10),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Row(
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        "Internet",
-                        style: TextStyle(
-                          color: Color(0xFF141414),
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Rp. 350.000",
-                      style: TextStyle(
-                        color: Color(0xFF141414),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(10.0), // Radius border (10.0)
-              ),
-              margin: const EdgeInsets.only(left: 0, right: 0, bottom: 10),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Row(
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        "Internet",
-                        style: TextStyle(
-                          color: Color(0xFF141414),
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Rp. 350.000",
-                      style: TextStyle(
-                        color: Color(0xFF141414),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(10.0), // Radius border (10.0)
-              ),
-              margin: const EdgeInsets.only(left: 0, right: 0, bottom: 10),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                child: Row(
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        "Internet",
-                        style: TextStyle(
-                          color: Color(0xFF141414),
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Rp. 350.000",
-                      style: TextStyle(
-                        color: Color(0xFF141414),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+                  ),
+                )
+                .toList(),
           ],
         ),
       ),

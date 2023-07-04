@@ -7,7 +7,7 @@
   - [IDE](#ide)
 - [DART](#dart-1)
   - [Asinkronus Pada Dart](#asinkronus-pada-dart)
-- [Lab 1 (Create Flutter Prjek)](#lab-1-create-flutter-prjek)
+- [Lab 1 (Create Flutter Projek)](#lab-1-create-flutter-projek)
   - [Membuat Projek Flutter](#membuat-projek-flutter)
   - [Main File](#main-file)
   - [Common Widget](#common-widget)
@@ -26,6 +26,12 @@
   - [ElevatedButton](#elevatedbutton)
   - [Card](#card)
   - [Praktek](#praktek-1)
+- [Lab 4 (Stateless and Statefull Widget)](#lab-4-stateless-and-statefull-widget)
+  - [Praktek](#praktek-2)
+    - [Interaksi](#interaksi)
+    - [Code Splitting](#code-splitting)
+- [Lab 5 (Navigation)](#lab-5-navigation)
+  - [Menggunakan Navigator](#menggunakan-navigator)
 # Pengenalan
 ## Dart
 Merupakan bahasa pemrograman asynchronous berbasis OOP yang dapat digunakan untuk membuat aplikasi di segala platform
@@ -48,7 +54,7 @@ Pada kebanyakan bahasa pemrograman (PHP, Java, Golang, Python), menggunakan kons
 
 Sedangkan pada bahasa Asinkronus jika ada Task 1 dan Task 2, Task 2 akan dijalankan setelah Task 1 sudah dieksekusi (Tanpa perlu proses nya selesai, yang penting di eksekusi)
 
-# Lab 1 (Create Flutter Prjek)
+# Lab 1 (Create Flutter Projek)
 ## Membuat Projek Flutter
 Untuk menginisiasi projek flutter dapat menggunakan perintah berikut
 
@@ -68,7 +74,7 @@ Inisiasi proyek juga dapat dilakukan menggunakan GUI Visual Studio Code seperti 
 Flutter memiliki satu main file, dimana file tersebut yang akan dieksekusi saat aplikasi flutter dijalankan file tersebut terletak di `lib/main.dart`
 
 ## Common Widget
-Semua yang ada pada UI Flutter merupakan sebuah Widget yang saling berkaitan
+Semua yang ada pada UI Flutter merupakan sebuah Widget yang saling berkaitan, bahkan saat kita membuat sebuah halaman atau tampilan itu juga akan menjadi widget
 ![Widget Tree](https://docs.flutter.dev/assets/images/docs/ui/layout/sample-flutter-layout.png)
 ### Material App
 Widget yang digunakan sebagai titik awal dalam membangun aplikasi dengan desain Material. `MaterialApp` menyiapkan banyak konfigurasi dasar dan menyediakan struktur dasar yang diperlukan untuk mengembangkan aplikasi Flutter dengan tampilan Material Design.
@@ -95,11 +101,11 @@ Column(
     children: [
         Container(child: Text("Text1")),
         Container(child: Text("Text2"))
-    ]
+    ] 
 )
 ```
 ## Row
-Column merupakan sebuah widget yang berfungsi juga sebagai wadah dan memiliki lebih dari 1 child bedanya dengan column widget didalam sini akan dirender secara horizontal
+Row merupakan sebuah widget yang berfungsi juga sebagai wadah dan memiliki lebih dari 1 child bedanya dengan column widget didalam sini akan dirender secara horizontal
 ```dart
 Row(
     children: [
@@ -129,10 +135,21 @@ Row(
 Pada projek `lab2` anda bisa melihat contoh penggunaan dan perpaduan widget diatas dengan beberapa tambahan widget lain
 
 # Lab 3 (Widget Part 2)
-Pada bagian ini akan menunjukan beberapa contoh widget lain yang umum digunakan
+Pada bagian ini akan menunjukan beberapa contoh widget lain yang umum digunakan dan salah cara merender widget dengan menggunakan konsep looping
 
 ## ListView
 Pada dasarnya ukuran halaman pada UI flutter akan mengikuti panjang dan lebar device nya, sehingga jika kita ingin membuat tampilan list yang sangat panjang kita memerlukan widget ini untuk dapat memanggunakan ukuran list yang panjang atau lebarnya melebihi ukuran device dan akan ditampilkan dalam bentuk scrolling
+```dart
+ListView(
+    children: [
+        Text("1"),
+        Text("2"),
+        Text("3"),
+        Text("4"),
+        Text("5"),
+    ]
+)
+```
 
 ## Text
 Widget untuk menampilkan sebuah text
@@ -211,4 +228,106 @@ Untuk praktek pada lab 3 akan membuat sebuah tampilan seperti berikut (Sudah dis
   <img src="images/lab_3_target_vid.gif" alt="Gambar 2" height="500">
 </div>
 
+# Lab 4 (Stateless and Statefull Widget)
+Pada dasar nya Widget pada flutter ada 2 jenis, Stateless dan Statefull widget, sesuai namanya perbedaan keduanya ada pada ada atau tidak nya state/keadaan pada widget tersebut.
 
+Stateless Widget adalah widget yang state/keadaan nya selalu tetap dan tidak berubah-ubah semenjak di inisiasi, jenis widget ini biasa digunakan untuk widget-widget kecil yang dibuat untuk di panggil di tempat lain sebagai reusable widget/component, contohnya jika kita membuat custom form yang akan kita gunakan berkali-kali di berbagai tempat kita akan menggunakan stateless widget untuk membuat widget/komponen tersebut.
+
+Statefull Widget adalah widget yang state/keadaan nya dapat berubah ubah semenjak di inisiasi, jenis widget ini biasa digunakan untuk membuat halaman yang memiliki interaksi yang merubah state/keadaan halaman tersebut. contohnya jika kita membuat halaman kalkulator tentunya akan ada interaksi di halaman tersebut yang merubah keaadaan pada halaman tersebut
+
+## Praktek
+Praktek disini akan terdiri dari beberapa tahap
+
+### Interaksi
+Pada praktek ini akan menggunakan projek `lab4` sebagai template dan hasil dari praktek ini sudah ada di projek `lab4_interaksi`. Goal dari praktik ini adalah menerima inputan user dan menambahkan nya ke list yang sudah ada. Berikut hasilnya
+
+<img src="images/lab_4_interaksi.gif" alt="Gambar 1" height="500">
+
+
+
+### Code Splitting
+Pada praktek ini akan menggunakan projek `lab4_interaksi` sebgai template dan hasil dari praktek ini sudah ada di projek `lab4_final`. Goal dari praktik ini adalah membagi bagi code yang panjang menjadi beberapa bagian dan memanggilanya
+
+
+# Lab 5 (Navigation)
+Pada lab ini akan mempelajari bagaimana melakukan navigasi pada flutter, pada folder lab5 sudah disiapkan projek yang sudah disiapkan 5 screen sebagai berikut tetapi belum ada navigasi antar screen tersebut
+<div style="display: flex;flex-wrap: wrap;">
+  <img src="images/splash.png" alt="Gambar 1" height="400">
+  <img src="images/signup_page.png" alt="Gambar 2" height="400">
+  <img src="images/login_page.png" alt="Gambar 2" height="400">
+  <img src="images/home_page.png" alt="Gambar 2" height="400">
+  <img src="images/expense_detail.png" alt="Gambar 2" height="400">
+</div>
+
+Pada umumnya pada Flutter memiliki 3 cara navigasi yaitu
+1. Menggunakan Navigator
+2. Menggunakan Named Routes
+3. Menggunakan Third Party Libraries yang berfungsi sebagai route management (Bisanya jika butuh fitur lebih)
+
+## Menggunakan Navigator
+berikut contoh untuk berpindah ke halaman `LoginPage` menggunakan Navigator, anda bisa menggunakan script dibawah pada trigger `onTap` atau lainya
+```dart
+Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const LoginPage(),
+    ),
+);
+```
+Jika kamu ingin membawa sebuah data ke `screen selanjutnya` anda bisa mengkonfigurasi Screen tujuan untuk menerima parameter seperti berikut
+```dart
+class ExpenseDetailPage extends StatelessWidget {
+  final String amount;
+  final String description;
+  const ExpenseDetailPage({
+    super.key,
+    required this.amount,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Row(
+        children: [Text(amount), Text(description)]
+      )
+    );
+  }
+}
+```
+diatas adalah contoh jika `screen selanjutnya` merupakan stateless widget,berikut jika `screen selanjutnya` merupakan statefull widget
+```dart
+import 'package:flutter/material.dart';
+
+class ExpenseDetailPage extends StatefulWidget {
+  final String amount;
+  final String description;
+  const ExpenseDetailPage({
+    super.key,
+    required this.amount,
+    required this.description,
+  });
+
+  @override
+  State<ExpenseDetailPage> createState() => _ExpenseDetailPageState();
+}
+
+class _ExpenseDetailPageState extends State<ExpenseDetailPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Row(children: [Text(widget.amount), Text(widget.description)])
+    );
+  }
+}
+```
+
+Lalu anda  bisa berpindah halaman dengan kode berikut
+```dart
+Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const ExpenseDetailPage(amount: "5000", description: "Lorem Ipsum Dolor Sit Amet"),
+    ),
+);
+```

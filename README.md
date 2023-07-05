@@ -32,6 +32,7 @@
     - [Code Splitting](#code-splitting)
 - [Lab 5 (Navigation)](#lab-5-navigation)
   - [Menggunakan Navigator](#menggunakan-navigator)
+  - [Menggunakan Named Route](#menggunakan-named-route)
 # Pengenalan
 ## Dart
 Merupakan bahasa pemrograman asynchronous berbasis OOP yang dapat digunakan untuk membuat aplikasi di segala platform
@@ -330,4 +331,24 @@ Navigator.of(context).push(
       builder: (context) => const ExpenseDetailPage(amount: "5000", description: "Lorem Ipsum Dolor Sit Amet"),
     ),
 );
+```
+
+## Menggunakan Named Route
+Named route merupakan metode navigasi menggunakan nama route dalam bentuk strings untuk berpindah pindah halaman, untuk menggunakan named route kita perlu menndefinisika nama route dan kelas screen nya untuk tiap route pada MaterialApp seperti berikut
+```dart
+MaterialApp(
+  title: 'Expense Tracker',
+  initialRoute: '/',
+  routes: {
+    '/': (context) => SplashPage(),
+    '/home': (context) => HomePage(),
+    '/login': (context) => LoginPage(),
+    '/signup': (context) => SignupPage(),
+    '/detail': (context) => ExpenseDetailPage()
+  },
+);
+```
+Lalu kita dapat berpindah halaman menggunakan kode berikut
+```dart
+Navigator.pushNamed(context, '/signup');
 ```

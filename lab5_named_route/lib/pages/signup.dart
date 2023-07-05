@@ -1,16 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:lab5_navigator/pages/home.dart';
-import 'package:lab5_navigator/pages/signup.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   InputDecoration textFieldDecoration(String label) {
     return InputDecoration(
       focusedBorder: const OutlineInputBorder(
@@ -39,16 +37,11 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void handleLoginButtonClick() {
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (ctx) => HomePage(),
-        ),
-        (route) => false);
+    Navigator.pushNamed(context, '/login');
   }
 
   void handleSignupButtonClick() {
-    Navigator.pop(context);
+    Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
   }
 
   @override
@@ -65,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 150,
               ),
               const Text(
-                "Halo,\nSilahkan Masuk",
+                "Halo,\nAyo Daftar",
                 style: TextStyle(
                   color: Color(0xFF141414),
                   fontWeight: FontWeight.w700,
@@ -100,9 +93,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   onPressed: () {
-                    handleLoginButtonClick();
+                    handleSignupButtonClick();
                   },
-                  child: const Text('Login'),
+                  child: const Text('Daftar'),
                 ),
               ),
               const SizedBox(
@@ -115,19 +108,19 @@ class _LoginPageState extends State<LoginPage> {
                     text: TextSpan(
                       children: [
                         const TextSpan(
-                          text: "Belum memiliki akun?",
+                          text: "Sudah memiliki akun?",
                           style: TextStyle(
                             color: Color(0xFF141414),
                           ),
                         ),
                         TextSpan(
-                          text: " Daftar",
+                          text: " Login",
                           style: const TextStyle(
                             color: Color(0xFF141414),
                             fontWeight: FontWeight.w500,
                           ),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = handleSignupButtonClick,
+                            ..onTap = handleLoginButtonClick,
                         )
                       ],
                     ),

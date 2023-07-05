@@ -1,7 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:lab5_navigator/pages/home.dart';
-import 'package:lab5_navigator/pages/signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -39,12 +37,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void handleLoginButtonClick() {
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (ctx) => HomePage(),
-        ),
-        (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
   }
 
   void handleSignupButtonClick() {

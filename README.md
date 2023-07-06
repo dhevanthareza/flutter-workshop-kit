@@ -33,6 +33,7 @@
 - [Lab 5 (Navigation)](#lab-5-navigation)
   - [Menggunakan Navigator](#menggunakan-navigator)
   - [Menggunakan Named Route](#menggunakan-named-route)
+- [Lab 6 (Persistent Local Storage)](#lab-6-persistent-local-storage)
 # Pengenalan
 ## Dart
 Merupakan bahasa pemrograman asynchronous berbasis OOP yang dapat digunakan untuk membuat aplikasi di segala platform
@@ -352,3 +353,12 @@ Lalu kita dapat berpindah halaman menggunakan kode berikut
 ```dart
 Navigator.pushNamed(context, '/signup');
 ```
+
+# Lab 6 (Persistent Local Storage)
+Local Storaga merupakan sebuah tempat penyimpanan persistent yang disimpan pada disk device, pada flutter untuk mengakses jenis penyimpanan ini bisa menggunakan berbagai library third party seperti shared_preferences, get_storage, localstorage, sqflite.
+
+Penggunaan library-libray tersebut tergantung kebutuhan, semua library yang saya sebutkan sebelumnya kecuali sqflite dapat menyimpan data dalam bentuk key-value.
+
+Penggunaan key-value yang disimpan pada persistent storage di local paling sering digunakan untuk menyimpan data autentikasi user. dan pada Lab 6 ini akan mencoba menerapkan kasus tersebut.
+
+Pada praktek ini akan menggunakan template yang ada di folder lab6 dan hasil final akan ada di lab6_final.

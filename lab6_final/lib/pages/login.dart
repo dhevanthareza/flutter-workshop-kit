@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,6 +11,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+
   InputDecoration textFieldDecoration(String label) {
     return InputDecoration(
       focusedBorder: const OutlineInputBorder(
@@ -37,7 +41,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void handleLoginButtonClick() {
+  void handleLoginButtonClick() async {
+    final storage = await SharedPreferences.getInstance();
+    storage.setString("email", emailController.text);
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
@@ -75,6 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 60,
               ),
               TextField(
+                controller: emailController,
                 cursorColor: const Color(0xFF141414),
                 decoration: textFieldDecoration('Email'),
               ),
@@ -82,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20,
               ),
               TextField(
+                controller: passwordController,
                 cursorColor: const Color(0xFF141414),
                 decoration: textFieldDecoration('Password'),
               ),

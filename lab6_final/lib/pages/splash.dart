@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:lab6_final/pages/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './signup.dart';
 
 class SplashPage extends StatefulWidget {
@@ -15,7 +17,27 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    moveToLogin();
+    checkLogin();
+  }
+
+  void checkLogin() async {
+    final storage = await SharedPreferences.getInstance();
+    String userEmail = storage.getString("email") ?? "-";
+    if (userEmail == '-') {
+      moveToLogin();
+      return;
+    }
+    moveToHome();
+  }
+
+  void moveToHome() {
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (ctx) => HomePage(),
+        ),
+      );
+    });
   }
 
   void moveToLogin() {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lab6_final/pages/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './expense_detail.dart';
 
 import '../components/expense_item_card.dart';
@@ -11,6 +13,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String userEmail = "";
+
   List<Map<String, dynamic>> histories = [
     {"name": "Listrik", "amount": 5000000},
     {"name": "Internet", "amount": 3000000},
@@ -26,6 +30,21 @@ class _HomePageState extends State<HomePage> {
   TextEditingController keteranganController = TextEditingController();
   TextEditingController amountController = TextEditingController();
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchUserData();
+  }
+
+  void fetchUserData() async {
+    final storage = await SharedPreferences.getInstance();
+    String _userEmail = storage.getString("email") ?? "-";
+    setState(() {
+      userEmail = _userEmail;
+    });
+  }
+
   void handleSubmitButtonClick() {
     setState(() {
       histories.insert(0,
@@ -40,6 +59,16 @@ class _HomePageState extends State<HomePage> {
     amountController.text = "";
   }
 
+  void handleLogoutButtonClick() async {
+    final storage = await SharedPreferences.getInstance();
+    storage.remove("email");
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (ctx) => SignupPage()),
+      (route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,16 +76,41 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 0),
         child: ListView(
           children: [
-            const Text(
-              "Catat\nPengeluaran",
-              style: TextStyle(
-                color: Color(0xFF141414),
-                fontWeight: FontWeight.w700,
-                fontSize: 35,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Catat\nPengeluaran",
+                  style: TextStyle(
+                    color: Color(0xFF141414),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 35,
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    handleLogoutButtonClick();
+                  },
+                  child: const Icon(
+                    Icons.logout,
+                    size: 30,
+                  ),
+                )
+              ],
             ),
             const SizedBox(
-              height: 50,
+              height: 12,
+            ),
+            Text(
+              "Login sebagai ${userEmail}",
+              style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey.shade500,
+                  fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(
+              height: 40,
             ),
             TextField(
               controller: keteranganController,

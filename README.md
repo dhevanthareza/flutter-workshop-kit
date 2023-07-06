@@ -361,4 +361,23 @@ Penggunaan library-libray tersebut tergantung kebutuhan, semua library yang saya
 
 Penggunaan key-value yang disimpan pada persistent storage di local paling sering digunakan untuk menyimpan data autentikasi user. dan pada Lab 6 ini akan mencoba menerapkan kasus tersebut.
 
-Pada praktek ini akan menggunakan template yang ada di folder lab6 dan hasil final akan ada di lab6_final.
+Pada praktek ini akan menggunakan template yang ada di folder lab6 dan hasil final akan ada di lab6_final. pada lab ini akan mempraktikkan penyimpanan email ke SharedPreferences
+
+Contoh Penggunaan shared preferences :
+
+1. Menyimpan data (menyimpan data dengan key `email` dan value `dhevanthareza@gmail.com`)
+```dart
+final storage = await SharedPreferences.getInstance();
+storage.setString("email", "dhevanthareza@gmail.com");
+```
+
+2. Mengambil data (mengambil data dari key `email`)
+```dart
+final storage = await SharedPreferences.getInstance();
+String _userEmail = storage.getString("email") ?? "-";
+```
+3. Menghapus data (menghapus data dari key `email`)
+```dart
+final storage = await SharedPreferences.getInstance();
+storage.remove("email");
+```

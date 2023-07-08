@@ -34,6 +34,7 @@
   - [Menggunakan Navigator](#menggunakan-navigator)
   - [Menggunakan Named Route](#menggunakan-named-route)
 - [Lab 6 (Persistent Local Storage)](#lab-6-persistent-local-storage)
+- [LAB 7 (REST API PART 1 - Authentication)](#lab-7-rest-api-part-1---authentication)
 # Pengenalan
 ## Dart
 Merupakan bahasa pemrograman asynchronous berbasis OOP yang dapat digunakan untuk membuat aplikasi di segala platform
@@ -381,3 +382,22 @@ String _userEmail = storage.getString("email") ?? "-";
 final storage = await SharedPreferences.getInstance();
 storage.remove("email");
 ```
+
+# LAB 7 (REST API PART 1 - Authentication)
+Pada lab ini akan mempraktikkan proses terkoneksi dengan api dan di implementasikan untuk proses registrasi dan proses login. 
+
+API (Application Programming Interface) merupakan sebuah interface yang digunakan agar sebuah aplikasi dapat berkomunikasi dengan aplikasi lain. Interface nya pun bermacam-macam seperti REST, SOCKET, GRPC dll
+
+Pada lab ini akan menggunakan interface REST untuk berkomunikasi dengan aplikasi server side yang terhubung langsung ke database.
+
+Untuk dapat terkoneksi dengan aplikasi server side menggunakan interface REST kita membutuhkan Http Client. pada flutter sudah ada beberapa library untuk Http Client seperti http,retrofit,dio, dll
+
+Pada praktik ini akan menggunkan library dio untuk terkoneksi dengan http client.
+
+1. Instalasi Dio
+   ```dart
+   dart pub add dio
+   ```
+2. Menyiapkan Intance Dio
+3. nsajd
+4. samdaj

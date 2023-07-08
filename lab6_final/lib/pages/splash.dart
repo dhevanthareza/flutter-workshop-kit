@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:lab6_final/pages/home.dart';
+import './home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './signup.dart';
 

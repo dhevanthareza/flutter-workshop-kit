@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab6_final/pages/signup.dart';
+import './signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './expense_detail.dart';
 

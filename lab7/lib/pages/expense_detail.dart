@@ -39,12 +39,14 @@ class _ExpenseDetailPageState extends State<ExpenseDetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 100,
+              height: 80,
             ),
             const Text(
               "Edit Expense",
               style: TextStyle(
                 color: Color(0xFF1F1F1F),
+                fontSize: 30,
+                fontWeight: FontWeight.w500,
               ),
             ),
             const SizedBox(
@@ -112,6 +114,20 @@ class _ExpenseDetailPageState extends State<ExpenseDetailPage> {
             ),
             const SizedBox(
               height: 20,
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF141414),
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Radius border (10.0)
+                  ),
+                ),
+                onPressed: () {},
+                child: const Text('Update'),
+              ),
             ),
           ],
         ),

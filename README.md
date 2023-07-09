@@ -35,6 +35,7 @@
   - [Menggunakan Named Route](#menggunakan-named-route)
 - [Lab 6 (Persistent Local Storage)](#lab-6-persistent-local-storage)
 - [LAB 7 (REST API PART 1 - Authentication)](#lab-7-rest-api-part-1---authentication)
+- [Lab 8 (REST API PART 2 - CRUD)](#lab-8-rest-api-part-2---crud)
 # Pengenalan
 ## Dart
 Merupakan bahasa pemrograman asynchronous berbasis OOP yang dapat digunakan untuk membuat aplikasi di segala platform
@@ -401,3 +402,7 @@ Pada praktik ini akan menggunkan library dio untuk terkoneksi dengan http client
 2. Menyiapkan Intance Dio
 3. nsajd
 4. samdaj
+
+
+# Lab 8 (REST API PART 2 - CRUD)
+Pada lab ini akan mempraktikan proses CRUD yang langsung terkoneksi dengan Aplikasi Server Side menggunakan Http Client Dio.

@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lab7_auth/api/user_api.dart';
+import 'package:lab7_auth/entity/user_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './home.dart';
 
@@ -42,14 +44,27 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void handleLoginButtonClick() async {
-    final storage = await SharedPreferences.getInstance();
-    storage.setString("email", emailController.text);
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (ctx) => HomePage(),
+    try {
+      UserEntity user =
+          await UserApi.login(emailController.text, passwordController.text);
+
+      final storage = await SharedPreferences.getInstance();
+      storage.setString("email", emailController.text);
+      storage.setString("accessToken", user.accessToken ?? "-");
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (ctx) => HomePage(),
+          ),
+          (route) => false);
+    } on Exception catch (err) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          content: Text("${err.toString()}"),
         ),
-        (route) => false);
+      );
+    }
   }
 
   void handleSignupButtonClick() {

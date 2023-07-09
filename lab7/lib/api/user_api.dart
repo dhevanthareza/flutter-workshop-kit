@@ -1,5 +1,5 @@
 class UserApi {
-  dynamic login() {}
+  static dynamic login() {}
 
-  dynamic register() {}
+  static dynamic register() {}
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lab8/entity/expense.entity.dart';
 
 class ExpenseItemCard extends StatelessWidget {
-  Map<String, dynamic> history;
+  ExpenseEntity history;
 
   ExpenseItemCard({super.key, required this.history});
 
@@ -17,36 +18,26 @@ class ExpenseItemCard extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    history['name'],
-                    style: const TextStyle(
-                      color: Color(0xFF141414),
-                      fontSize: 15,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                  Text(
-                    history['amount'].toString(),
-                    style: const TextStyle(
-                      color: Color(0xFF141414),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
-                ],
+              child: Text(
+                "${history.description}",
+                style: const TextStyle(
+                  color: Color(0xFF141414),
+                  fontSize: 15,
+                ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
             ),
             const SizedBox(
               height: 15,
             ),
-            const Icon(
-              Icons.delete,
-              size: 20,
-              color: Color(0xFF141414),
+            Text(
+              "${history.amount}",
+              style: const TextStyle(
+                color: Color(0xFF141414),
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
             )
           ],
         ),

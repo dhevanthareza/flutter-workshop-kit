@@ -1,0 +1,177 @@
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import '../api/user_api.dart';
+import '../entity/user_entity.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import './home.dart';
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool isSubmitting = false;
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+
+  InputDecoration textFieldDecoration(String label) {
+    return InputDecoration(
+      focusedBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(15),
+        ),
+        borderSide: BorderSide(
+          color: Color(0xFF141414),
+          width: 2.0,
+        ),
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(15),
+        ),
+        borderSide: BorderSide(
+          color: Color(0xFF141414),
+          width: 2.0,
+        ),
+      ),
+      labelText: label,
+      labelStyle: const TextStyle(
+        color: Color(0xFF141414),
+      ),
+    );
+  }
+
+  void handleLoginButtonClick() async {
+    setState(() {
+      isSubmitting = true;
+    });
+    try {
+      UserEntity user =
+          await UserApi.login(emailController.text, passwordController.text);
+
+      final storage = await SharedPreferences.getInstance();
+      storage.setString("email", emailController.text);
+      storage.setString("accessToken", user.accessToken ?? "-");
+      setState(() {
+        isSubmitting = false;
+      });
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (ctx) => HomePage(),
+          ),
+          (route) => false);
+    } on Exception catch (err) {
+      setState(() {
+        isSubmitting = false;
+      });
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          content: Text("${err.toString()}"),
+        ),
+      );
+    }
+  }
+
+  void handleSignupButtonClick() {
+    Navigator.pop(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 150,
+              ),
+              const Text(
+                "Halo,\nSilahkan Masuk",
+                style: TextStyle(
+                  color: Color(0xFF141414),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 25,
+                ),
+              ),
+              const SizedBox(
+                height: 60,
+              ),
+              TextField(
+                controller: emailController,
+                cursorColor: const Color(0xFF141414),
+                decoration: textFieldDecoration('Email'),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: passwordController,
+                cursorColor: const Color(0xFF141414),
+                decoration: textFieldDecoration('Password'),
+              ),
+              const SizedBox(
+                height: 35,
+              ),
+              isSubmitting
+                  ? Center(child: CircularProgressIndicator())
+                  : SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF141414),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                10.0), // Radius border (10.0)
+                          ),
+                        ),
+                        onPressed: () {
+                          handleLoginButtonClick();
+                        },
+                        child: const Text('Login'),
+                      ),
+                    ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: "Belum memiliki akun?",
+                          style: TextStyle(
+                            color: Color(0xFF141414),
+                          ),
+                        ),
+                        TextSpan(
+                          text: " Daftar",
+                          style: const TextStyle(
+                            color: Color(0xFF141414),
+                            fontWeight: FontWeight.w500,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = handleSignupButtonClick,
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab8/entity/expense.entity.dart';
 import './signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './expense_detail.dart';
@@ -15,17 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String userEmail = "";
 
-  List<Map<String, dynamic>> histories = [
-    {"name": "Listrik", "amount": 5000000},
-    {"name": "Internet", "amount": 3000000},
-    {"name": "Utang", "amount": 5000000},
-    {"name": "Cicilan Rumah", "amount": 10000000},
-    {"name": "Kuota", "amount": 80000},
-    {"name": "Nongki nongki asik", "amount": 800000},
-    {"name": "Starbuck", "amount": 700000},
-    {"name": "Ganti HP", "amount": 70000000},
-    {"name": "Ganti Laptop", "amount": 170000000},
-  ];
+  List<ExpenseEntity> histories = [];
 
   TextEditingController keteranganController = TextEditingController();
   TextEditingController amountController = TextEditingController();
@@ -46,10 +37,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   void handleSubmitButtonClick() {
-    setState(() {
-      histories.insert(0,
-          {"name": keteranganController.text, "amount": amountController.text});
-    });
     handleResetButtonClick();
     FocusManager.instance.primaryFocus?.unfocus();
   }
@@ -225,26 +212,28 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 20,
             ),
-            ...histories
-                .map(
-                  (Map<String, dynamic> history) => InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => ExpenseDetailPage(
-                            amount: history['amount'].toString(),
-                            description: history['name'],
+            Column(
+              children: histories
+                  .map(
+                    (ExpenseEntity history) => InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => ExpenseDetailPage(
+                              amount: history.amount.toString(),
+                              description: "${history.description}",
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    child: ExpenseItemCard(
-                      history: history,
+                        );
+                      },
+                      child: ExpenseItemCard(
+                        history: history,
+                      ),
                     ),
-                  ),
-                )
-                .toList(),
+                  )
+                  .toList(),
+            ),
           ],
         ),
       ),

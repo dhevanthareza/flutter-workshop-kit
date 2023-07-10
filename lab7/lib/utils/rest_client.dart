@@ -13,7 +13,7 @@ class RestClient {
         headers: {"Accept": "application/json"},
         connectTimeout: Duration(seconds: 20),
         receiveTimeout: Duration(seconds: 20),
-        baseUrl: "https://devel74.dinustek.com/expense/public/index.php",
+        baseUrl: "https://devel81.dinustek.com/expense-api/public",
       ),
     );
     dio.interceptors.add(PrettyDioLogger());

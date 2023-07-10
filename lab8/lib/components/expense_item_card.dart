@@ -17,23 +17,36 @@ class ExpenseItemCard extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Text(
-                history['name'],
-                style: const TextStyle(
-                  color: Color(0xFF141414),
-                  fontSize: 15,
-                ),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    history['name'],
+                    style: const TextStyle(
+                      color: Color(0xFF141414),
+                      fontSize: 15,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  Text(
+                    history['amount'].toString(),
+                    style: const TextStyle(
+                      color: Color(0xFF141414),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                ],
               ),
             ),
-            Text(
-              history['amount'].toString(),
-              style: const TextStyle(
-                color: Color(0xFF141414),
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-              ),
+            const SizedBox(
+              height: 15,
+            ),
+            const Icon(
+              Icons.delete,
+              size: 20,
+              color: Color(0xFF141414),
             )
           ],
         ),

@@ -401,121 +401,132 @@ Pada praktik ini akan menggunkan library dio untuk terkoneksi dengan http client
    ```
 2. Menyiapkan Intance Dio, sebenarnya untuk menggunakan dio kita tidak perlu membuat instance, pembuatan instance diperlukan untuk mendefinisikan Base Url agar tidak perlu di definisikan berulang-ulang. Selain Base Url juga dapat membuat opsi opsi lain. Pada lab 8 juga membuat beberapa fungsi khusus untuk handle kejadian kejadian tertentu agar kita tidak perlu melakukan handling berkali-kalo. Berikut instance Dio yang dibuat
    ```dart
-   class RestClient {
-    static final client = () async {
-      var dio = Dio(
-        BaseOptions(
-          followRedirects: true,
-          headers: {"Accept": "application/json"},
-          connectTimeout: Duration(seconds: 20),
-          receiveTimeout: Duration(seconds: 20),
-          baseUrl: "https://devel81.dinustek.com/expense-api/public",
-        ),
-      );
-      dio.interceptors.add(PrettyDioLogger());
-      final storage = await SharedPreferences.getInstance();
-      String? accessToken = storage.getString("accessToken");
-      if (accessToken != null) {
-        dio.options.headers['Authorization'] = "Bearer $accessToken";
-      }
-      return dio;
-    };
+    class RestClient {
+      static final client = () async {
+        var dio = Dio(
+          BaseOptions(
+            followRedirects: true,
+            headers: {"Accept": "application/json"},
+            connectTimeout: Duration(seconds: 20),
+            receiveTimeout: Duration(seconds: 20),
+            baseUrl: "https://devel81.dinustek.com/expense-api/public",
+          ),
+        );
+        dio.interceptors.add(PrettyDioLogger());
+        final storage = await SharedPreferences.getInstance();
+        String? accessToken = storage.getString("accessToken");
+        if (accessToken != null) {
+          dio.options.headers['Authorization'] = "Bearer $accessToken";
+        }
+        return dio;
+      };
 
-    static dynamic _returnResponse(Response? response) {
-      if (response == null) {
-        throw Exception('Tidak dapat terkoneksi dengan API');
+      static dynamic _returnResponse(Response? response) {
+        if (response == null) {
+          throw Exception('Tidak dapat terkoneksi dengan API');
+        }
+        return _handleResponse(response);
       }
-      return _handleResponse(response);
-    }
 
-    static dynamic _returnErr(DioException err) {
-      print(err);
-      Response? response = err.response;
-      if (response == null) {
-        throw Exception(err.message ?? "HTTP ERROR");
+      static dynamic _returnErr(DioException err) {
+        print(err);
+        Response? response = err.response;
+        if (response == null) {
+          throw Exception(err.message ?? "HTTP ERROR");
+        }
+        return _handleResponse(response);
       }
-      return _handleResponse(response);
-    }
 
-    static _handleResponse(Response response) {
-      if (response.statusCode == 200) {
-        var responseJson = response.data;
+      static _handleResponse(Response response) {
+        if (response.statusCode == 200) {
+          var responseJson = response.data;
+          return responseJson;
+        }
+        throw Exception(
+          response.data != null ? response.data['message'] : 'Undefined Error',
+        );
+      }
+
+      static Future<dynamic> get(String url,
+          {Map<String, dynamic>? queryParameter}) async {
+        dynamic responseJson;
+        try {
+          Dio _client = await client();
+          dynamic response =
+              await _client.get(url, queryParameters: queryParameter);
+          responseJson = _returnResponse(response);
+          return responseJson;
+        } on SocketException {
+          throw Exception('No Internet connection');
+        } on DioException catch (err) {
+          responseJson = _returnErr(err);
+        }
         return responseJson;
       }
-      throw Exception(
-        response.data != null ? response.data['message'] : 'Undefined Error',
-      );
-    }
 
-    static Future<dynamic> get(String url,
-        {Map<String, dynamic>? queryParameter}) async {
-      dynamic responseJson;
-      try {
-        Dio _client = await client();
-        dynamic response =
-            await _client.get(url, queryParameters: queryParameter);
-        responseJson = _returnResponse(response);
+      static Future<dynamic> post(String url, {dynamic data}) async {
+        dynamic responseJson;
+        Response response;
+        try {
+          Dio _client = await client();
+          response = await _client.post(url, data: data);
+          responseJson = _returnResponse(response);
+        } on SocketException {
+          throw Exception('No Internet connection');
+        } on DioException catch (err) {
+          responseJson = _returnErr(err);
+        }
         return responseJson;
-      } on SocketException {
-        throw Exception('No Internet connection');
-      } on DioException catch (err) {
-        responseJson = _returnErr(err);
       }
-      return responseJson;
-    }
 
-    static Future<dynamic> post(String url, {dynamic data}) async {
-      dynamic responseJson;
-      Response response;
-      try {
-        Dio _client = await client();
-        response = await _client.post(url, data: data);
-        responseJson = _returnResponse(response);
-      } on SocketException {
-        throw Exception('No Internet connection');
-      } on DioException catch (err) {
-        responseJson = _returnErr(err);
-      }
-      return responseJson;
-    }
-
-    static Future<dynamic> patch(String url, {dynamic data}) async {
-      dynamic responseJson;
-      Response response;
-      try {
-        Dio _client = await client();
-        response = await _client.patch(url, data: data);
-        responseJson = _returnResponse(response);
+      static Future<dynamic> patch(String url, {dynamic data}) async {
+        dynamic responseJson;
+        Response response;
+        try {
+          Dio _client = await client();
+          response = await _client.patch(url, data: data);
+          responseJson = _returnResponse(response);
+          return responseJson;
+        } on SocketException {
+          throw Exception('No Internet connection');
+        } on DioException catch (err) {
+          responseJson = _returnErr(err);
+        }
         return responseJson;
-      } on SocketException {
-        throw Exception('No Internet connection');
-      } on DioException catch (err) {
-        responseJson = _returnErr(err);
       }
-      return responseJson;
-    }
 
-    static Future<dynamic> delete(String url, {dynamic data}) async {
-      dynamic responseJson;
-      Response response;
-      try {
-        Dio _client = await client();
-        response = await _client.delete(url, data: data);
-        responseJson = _returnResponse(response);
+      static Future<dynamic> delete(String url, {dynamic data}) async {
+        dynamic responseJson;
+        Response response;
+        try {
+          Dio _client = await client();
+          response = await _client.delete(url, data: data);
+          responseJson = _returnResponse(response);
+          return responseJson;
+        } on SocketException {
+          throw Exception('No Internet connection');
+        } on DioException catch (err) {
+          responseJson = _returnErr(err);
+        }
         return responseJson;
-      } on SocketException {
-        throw Exception('No Internet connection');
-      } on DioException catch (err) {
-        responseJson = _returnErr(err);
       }
-      return responseJson;
     }
-  }
 
    ```
-3. nsajd
-4. samdaj
+3. Berikut contoh penggunaan dari instance dio diatas
+   ```dart
+    await RestClient.get('/expense');
+   ```
+   ```dart
+    await RestClient.post('/expense', data: {"description": "description", "amount": "amount"});
+   ```
+   ```dart
+    await RestClient.patch('/expense/1', data: {"description": "description", "amount": "amount"});
+   ```
+   ```dart
+    await RestClient.delete('/expense/1');
+   ```
 
 
 # Lab 8 (REST API PART 2 - CRUD)
-Pada lab ini akan mempraktikan proses CRUD yang langsung terkoneksi dengan Aplikasi Server Side menggunakan Http Client Dio.
+Pada lab ini akan mempraktikan proses CRUD yang langsung terkoneksi dengan Aplikasi Server Side menggunakan Http Client Dio. Hasil dari lab ini bisa anda lihat pada lab8_final

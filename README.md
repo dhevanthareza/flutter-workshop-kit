@@ -79,6 +79,7 @@ Flutter memiliki satu main file, dimana file tersebut yang akan dieksekusi saat 
 
 ## Common Widget
 Semua yang ada pada UI Flutter merupakan sebuah Widget yang saling berkaitan, bahkan saat kita membuat sebuah halaman atau tampilan itu juga akan menjadi widget
+
 ![Widget Tree](https://docs.flutter.dev/assets/images/docs/ui/layout/sample-flutter-layout.png)
 ### Material App
 Widget yang digunakan sebagai titik awal dalam membangun aplikasi dengan desain Material. `MaterialApp` menyiapkan banyak konfigurasi dasar dan menyediakan struktur dasar yang diperlukan untuk mengembangkan aplikasi Flutter dengan tampilan Material Design.
@@ -137,7 +138,7 @@ Row(
 ```
 ## Praktek
 Pada projek `lab2` anda bisa melihat contoh penggunaan dan perpaduan widget diatas dengan beberapa tambahan widget lain
-
+![lab2 target](images/lab2_target.png)
 # Lab 3 (Widget Part 2)
 Pada bagian ini akan menunjukan beberapa contoh widget lain yang umum digunakan dan salah cara merender widget dengan menggunakan konsep looping
 

@@ -38,7 +38,9 @@ class _LoginPageState extends State<LoginPage> {
 
   void handleLoginButtonClick() {}
 
-  void handleSignupButtonClick() {}
+  void handleSignupButtonClick() {
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lab5/pages/home.dart';
+import 'package:lab5/pages/login.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -36,9 +38,15 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-  void handleLoginButtonClick() {}
+  void handleLoginButtonClick() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (ctx) => LoginPage()));
+  }
 
-  void handleSignupButtonClick() {}
+  void handleSignupButtonClick() {
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (ctx) => HomePage()));
+  }
 
   @override
   Widget build(BuildContext context) {

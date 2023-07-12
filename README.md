@@ -410,7 +410,7 @@ Pada praktik ini akan menggunkan library dio untuk terkoneksi dengan http client
             headers: {"Accept": "application/json"},
             connectTimeout: Duration(seconds: 20),
             receiveTimeout: Duration(seconds: 20),
-            baseUrl: "https://devel81.dinustek.com/expense-api/public",
+            baseUrl: "http://192.168.41.132:4001",
           ),
         );
         dio.interceptors.add(PrettyDioLogger());

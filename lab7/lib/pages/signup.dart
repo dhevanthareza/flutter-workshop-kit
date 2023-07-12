@@ -1,5 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lab7/api/user_api.dart';
+import 'package:lab7/entity/user_entity.dart';
+import 'package:lab7/utils/rest_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './home.dart';
 import './login.dart';
@@ -52,8 +55,14 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   void handleSignupButtonClick() async {
+    UserEntity user = await UserApi.register(
+      emailController.text,
+      passwordController.text,
+    );
+
     final storage = await SharedPreferences.getInstance();
     storage.setString("email", emailController.text);
+    storage.setString("accessToken", user.accessToken ?? "-");
     goToHomePage();
   }
 

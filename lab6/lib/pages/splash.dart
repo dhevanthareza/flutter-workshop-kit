@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:lab6/pages/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './signup.dart';
 
 class SplashPage extends StatefulWidget {
@@ -18,14 +20,27 @@ class _SplashPageState extends State<SplashPage> {
     moveToLogin();
   }
 
-  void moveToLogin() {
-    Future.delayed(Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (ctx) => SignupPage(),
-        ),
-      );
-    });
+  void moveToLogin() async {
+    var storage = await SharedPreferences.getInstance();
+    String? email = storage.getString("email");
+
+    if (email == null) {
+      Future.delayed(Duration(seconds: 2), () {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (ctx) => SignupPage(),
+          ),
+        );
+      });
+    } else {
+      Future.delayed(Duration(seconds: 2), () {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (ctx) => HomePage(),
+          ),
+        );
+      });
+    }
   }
 
   @override

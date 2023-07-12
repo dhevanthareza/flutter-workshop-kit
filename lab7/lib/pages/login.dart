@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lab7/api/user_api.dart';
+import 'package:lab7/entity/user_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './home.dart';
 
@@ -42,8 +44,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void handleLoginButtonClick() async {
+    UserEntity user = await UserApi.login(
+      emailController.text,
+      passwordController.text,
+    );
+
     final storage = await SharedPreferences.getInstance();
     storage.setString("email", emailController.text);
+    storage.setString("accessToken", user.accessToken ?? "-");
+
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(

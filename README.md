@@ -394,6 +394,11 @@ Pada lab ini akan menggunakan interface REST untuk berkomunikasi dengan aplikasi
 
 Untuk dapat terkoneksi dengan aplikasi server side menggunakan interface REST kita membutuhkan Http Client. pada flutter sudah ada beberapa library untuk Http Client seperti http,retrofit,dio, dll
 
+You can setup the api on
+```
+https://github.com/dhevanthareza/expense-api
+```
+
 Pada praktik ini akan menggunkan library dio untuk terkoneksi dengan http client.
 
 1. Instalasi Dio

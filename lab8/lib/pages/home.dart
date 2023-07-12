@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab8/api/expense_api.dart';
 import 'package:lab8/entity/expense.entity.dart';
 import './signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     fetchUserData();
+    fetchExpenses();
   }
 
   void fetchUserData() async {
@@ -36,9 +38,18 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void handleSubmitButtonClick() {
+  void handleSubmitButtonClick() async {
+    await ExpenseApi.create(keteranganController.text, amountController.text);
+    fetchExpenses();
     handleResetButtonClick();
     FocusManager.instance.primaryFocus?.unfocus();
+  }
+
+  void fetchExpenses() async {
+    List<ExpenseEntity> _histories = await ExpenseApi.list();
+    setState(() {
+      histories = _histories;
+    });
   }
 
   void handleResetButtonClick() {
@@ -221,11 +232,14 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                             builder: (ctx) => ExpenseDetailPage(
+                              expenseId: history.id ?? 0,
                               amount: history.amount.toString(),
                               description: "${history.description}",
                             ),
                           ),
-                        );
+                        ).then((value) {
+                          fetchExpenses();
+                        });
                       },
                       child: ExpenseItemCard(
                         history: history,

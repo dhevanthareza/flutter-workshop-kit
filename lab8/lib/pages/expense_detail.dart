@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:lab8/api/expense_api.dart';
+import 'package:lab8/utils/rest_client.dart';
 
 class ExpenseDetailPage extends StatefulWidget {
+  final int expenseId;
   final String amount;
   final String description;
+
   const ExpenseDetailPage({
     super.key,
+    required this.expenseId,
     required this.amount,
     required this.description,
   });
@@ -27,6 +32,17 @@ class _ExpenseDetailPageState extends State<ExpenseDetailPage> {
   void initializeTextController() {
     keteranganController.text = widget.description;
     amountController.text = widget.amount;
+  }
+
+  void update() async {
+    await ExpenseApi.update(
+        widget.expenseId, keteranganController.text, amountController.text);
+    Navigator.pop(context);
+  }
+
+  void delete() async {
+    await ExpenseApi.delete(widget.expenseId);
+    Navigator.pop(context);
   }
 
   @override
@@ -125,8 +141,26 @@ class _ExpenseDetailPageState extends State<ExpenseDetailPage> {
                         BorderRadius.circular(10.0), // Radius border (10.0)
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  update();
+                },
                 child: const Text('Update'),
+              ),
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF141414),
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Radius border (10.0)
+                  ),
+                ),
+                onPressed: () {
+                  delete();
+                },
+                child: const Text('Delete'),
               ),
             ),
           ],
